@@ -1,0 +1,87 @@
+﻿@model IEnumerable<PracticaCore2ART.Models.Libro>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Libros</h1>
+
+<h3>@ViewData["REGISTROS"]</h3>
+<div class="mb-4">
+    <a asp-controller="Home" asp-action="Index" asp-route-posicion="@ViewData["ANTERIOR"]" class="btn btn-info">
+        Anterior
+    </a>
+    <a asp-controller="Home" asp-action="Index" asp-route-posicion="@ViewData["SIGUIENTE"]" class="btn btn-info">
+        Siguiente
+    </a>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Libro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Autor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Editorial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Portada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Resumen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Genero)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id_Libro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Autor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Editorial)
+                </td>
+                <td>
+                   <img style="width: 200px; height:250px" src="~/images/@Html.DisplayFor(modelItem => item.Portada)" /> 
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Resumen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id_Genero)
+                </td>
+                <td>
+                    <a class="btn btn-success" asp-controller="Home" asp-action="DetailsLibro" asp-route-idlibro="@item.Id_Libro">Detalles</a>
+                </td>
+                <td>
+                    <a class="btn btn-warning" asp-controller="Home" asp-action="Index" asp-route-idlibro="@item.Id_Libro">Comprar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

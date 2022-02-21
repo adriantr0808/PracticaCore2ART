@@ -1,0 +1,34 @@
+﻿@if (Context.User.Identity.IsAuthenticated == false)
+{
+    <li class=" nav-item">
+        <a class="nav-link" asp-controller="Users" asp-action="Perfil">Login</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link">@ViewData["LIBROS"]</a>
+    </li>
+}
+else
+{
+
+
+    @if (Context.Session.GetString("IDSLIBROS") != null)
+    {
+        <li class="nav-item">
+            <a class="nav-link">@ViewData["LIBROS"]</a>
+        </li>
+
+    }
+
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Users" asp-action="Perfil"><img src="~/images/@Context.User.FindFirst("IMAGEN").Value" style=" width:20px; height:20px" /> Hola, @Context.User.Identity.Name</a>
+
+    </li>
+
+
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Manage" asp-action="Logout">
+            Log Out
+        </a>
+    </li>
+}

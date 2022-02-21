@@ -1,0 +1,91 @@
+﻿@model IEnumerable<PracticaCore2ART.Models.Libro>
+
+@{
+    ViewData["Title"] = "CarritoLibros";
+}
+
+<h1>Carrito Libros</h1>
+
+
+<h2 style="color:darkred">
+    @ViewData["MENSAJE"]
+</h2>
+
+
+
+@if (Model != null)
+{
+
+    <form method="post">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id_Libro)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Titulo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Autor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Editorial)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Portada)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Resumen)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Precio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id_Genero)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id_Libro)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Titulo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Autor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Editorial)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Portada)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Resumen)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Precio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id_Genero)
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" asp-controller="Home" asp-action="CarritoLibros" asp-route-ideliminar="@item.Id_Libro">Eliminar</a>
+                            <input type="hidden" value="@item.Id_Libro" name="idlibro" />
+                           
+                            
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn btn-success">Finalizar Compra</button>
+    </form>
+}
